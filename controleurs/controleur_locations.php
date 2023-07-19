@@ -67,22 +67,11 @@
             }
         }
 
-        /* Fonction permettant de supprimer un items de location
+        /* Fonction permettant de supprimer un items de location */
         function supprimer() {
             if(isset($_GET['id'])) {
                 $message = modele_location::supprimer($_GET['id']);
-                echo $message;
-            } else {
-                $erreur = "Impossible de supprimer l'item. Des informations sont manquantes";
-                require './vues/erreur.php';
-            }
-        } */
-
-        function supprimer() {
-            if(isset($_GET['id'])) {
-                $message = modele_location::supprimer($_GET['id']);
-                header('/confirmation_suppression.php?message=' . urlencode($message));
-                exit();
+                require './vues/locations/confirmation_suppression.php';
             } else {
                 $erreur = "Impossible de supprimer l'item. Des informations sont manquantes";
                 require './vues/erreur.php';

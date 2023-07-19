@@ -2,6 +2,7 @@
   require_once 'controleurs/controleur_chalets.php';
   require_once 'controleurs/controleur_regions.php';
   require_once 'controleurs/controleur_locations.php';
+  $title = 'Chalets à louer - module personnel';
 ?>
 
 <?php include_once(__DIR__ . '/include/header.php'); ?>

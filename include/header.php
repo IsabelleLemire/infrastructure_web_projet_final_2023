@@ -1,3 +1,8 @@
+<?php
+  require_once './controleurs/controleur_authentification.php';
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="fr-CA">
 
@@ -7,7 +12,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Titre de la page </title> <!-- (défi! rendre ce titre dynamique selon la page sélectionnée) -->
+  <title><?= $title ?></title> <!-- (défi! rendre ce titre dynamique selon la page sélectionnée) -->
   
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -32,13 +37,15 @@
           </li>
           <li><a href="liste_chalets_en_promotion.php">Chalets en promotion</a></li>
           <li><a href="module_personnel.php">Module personnel</a></li>
-          <li>
-            <a href="administration_chalets.php">Administration &nbsp;<i class="arrow down"></i></a>
-            <ul>
-              <li><a href="administration_chalets.php">Chalets</a></li>
-              <li><a href="administration_module_personnel.php">Module personnel</a></li>
-            </ul>
-          </li>
+          <?php if(isset($_SESSION["utilisateur"])) { ?>
+            <li>
+              <a>Administration &nbsp;<i class="arrow down"></i></a>
+              <ul>
+                  <li><a href="administration_chalets.php">Chalets</a></li>
+                  <li><a href="administration_module_personnel.php">Module personnel</a></li>
+              </ul>
+            </li>
+          <?php } ?>
       </ul>
 
       <!-- Formulaire de connexion -->
@@ -49,8 +56,11 @@
             <button>Connexion</button>
             <button id="close" class="annuler" aria-label="close" formnovalidate onclick="document.getElementById('dialog_login').close();">Annuler</button>
           </form>
-      </dialog>        
-      <button onclick="document.getElementById('dialog_login').showModal();">Connexion</button>
+      </dialog>  
+      
+      <button onclick="document.getElementById('dialog_login').style.display = 'block';">Connexion</button>
+      <button onclick="window.location.href='./vues/authentifications/formulaire_ajout.php'">Ajouter un utilisateur</button>
+
     </nav>
     <hr>
   </header>

@@ -16,6 +16,7 @@ class modele_region {
     static function connecter() {
         
         $mysqli = new mysqli(Db::$host, Db::$username, Db::$password, Db::$database);
+        mysqli_set_charset($mysqli, "utf8");
 
         // Vérifier la connexion
         if ($mysqli -> connect_errno) {

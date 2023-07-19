@@ -2,6 +2,8 @@
     require_once 'controleurs/controleur_chalets.php';
     require_once 'controleurs/controleur_regions.php';
     require_once 'controleurs/controleur_locations.php';
+
+    $title = 'Chalets à louer - édition item en location';
 ?>
 
 <?php 

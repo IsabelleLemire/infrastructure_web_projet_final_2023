@@ -1,6 +1,8 @@
 <?php 
   require_once 'controleurs/controleur_chalets.php';
   require_once 'controleurs/controleur_regions.php';
+
+  $title = 'Chalets à louer - Administrateur chalet à louer';
 ?>
 
 <?php include_once(__DIR__ . '/include/header.php'); ?>
