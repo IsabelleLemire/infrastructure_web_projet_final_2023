@@ -48,9 +48,9 @@
           <?php } ?>
       </ul>
 
-      <!-- Formulaire de connexion -->
+      <!-- Formulaire de connexion  changer le nom de la page dans action pour pointer vers la page que je vais créer login check.php -->
       <dialog id="dialog_login">         
-          <form>
+          <form method="POST" action="./login_check.php">
             <input type="text" placeholder="Utilisateur" >
             <input type="password" placeholder="Mot de passe" >
             <button>Connexion</button>
@@ -59,7 +59,7 @@
       </dialog>  
       
       <button onclick="document.getElementById('dialog_login').style.display = 'block';">Connexion</button>
-      <button onclick="window.location.href='./vues/authentifications/formulaire_ajout.php'">Ajouter un utilisateur</button>
+      <button onclick="window.location.href='./formulaire_ajout_utilisateur.php'">Ajouter un utilisateur</button>
 
     </nav>
     <hr>

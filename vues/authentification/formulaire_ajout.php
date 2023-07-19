@@ -7,7 +7,6 @@
     }
 ?>
 
-<h2>Ajout d'un utilisateur</h2>
 
 <form method="POST">
     <label for="utilisateur_ajout">Utilisateur</label>

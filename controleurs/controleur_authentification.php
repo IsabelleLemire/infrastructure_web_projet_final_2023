@@ -3,19 +3,22 @@
 require_once './modeles/modele_authentification.php';
 
 class ControlleurAuthentification {
-    function __construct() {
-        session_start();
-    }
+
     
     /* Fonction permettant d'ajouter un utilisateur */
     function ajouter() {
         if(isset($_POST['utilisateur_ajout']) && isset($_POST['mot_de_passe_ajout']) && isset($_POST['courriel_ajout'])) {
             $message = modele_authentification::ajouter($_POST['utilisateur_ajout'], $_POST['mot_de_passe_ajout'], $_POST['courriel_ajout']);
-            echo $message;
+            //echo $message;
         } else {
             $erreur = "Impossible d'ajouter un utilisateur. Des informations sont manquantes";
             require './vues/erreur.php';
         }
+    }
+
+    function afficherFormulaireAjoutUtilisateur() {
+        //$utilisateur = modele_authentification::ObtenirFormulaireAjoutUtilisateur();
+        require './vues/authentification/formulaire_ajout.php';
     }
 
     /* Fonction permettant à un utilisateur de se connecter */
@@ -26,18 +29,22 @@ class ControlleurAuthentification {
                 // Vérifier si le mot de passe soumis correspond au mot de passe stocké dans la base de données                
                 if(password_verify($_POST['mot_de_passe_login'], $utilisateur->mot_de_passe)) {
                     // Stocker l'utilisateur dans la session
-                    $_SESSION['utilisateur'] = $_POST['utilisateur_login'];
+                    $_SESSION['utilisateur'] = $_POST['utilisateur_login']; 
+                    die('1');
                     header('Location: .'); // recharge la page courante
                 } else {
                     $erreur = "<b class='erreur'>Le mot de passe est incorrect</b>";
+                    die('2');
                     require './vues/erreur.php';
                 }
             } else {
                 $erreur = "L'utilisateur n'existe pas";
+                die('3');
                 require './vues/erreur.php';
             }
         } else {
             $erreur = "Impossible de se connecter. Des informations sont manquantes";
+            die('4');
             require './vues/erreur.php';
         }
     }
