@@ -48,11 +48,11 @@
           <?php } ?>
       </ul>
 
-      <!-- Formulaire de connexion  changer le nom de la page dans action pour pointer vers la page que je vais créer login check.php -->
+      <!-- Formulaire de connexion -->
       <dialog id="dialog_login">         
           <form method="POST" action="./login_check.php">
-            <input type="text" placeholder="Utilisateur" >
-            <input type="password" placeholder="Mot de passe" >
+            <input type="text" placeholder="Utilisateur" name="code_utilisateur" >
+            <input type="password" placeholder="Mot de passe" name="mot_de_passe" >
             <button>Connexion</button>
             <button id="close" class="annuler" aria-label="close" formnovalidate onclick="document.getElementById('dialog_login').close();">Annuler</button>
           </form>

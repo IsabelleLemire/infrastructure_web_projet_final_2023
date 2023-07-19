@@ -23,13 +23,13 @@ class ControlleurAuthentification {
 
     /* Fonction permettant à un utilisateur de se connecter */
     function connecter() {
-        if(isset($_POST['utilisateur_login']) && isset($_POST['mot_de_passe_login'])) {
-            $utilisateur = modele_authentification::ObtenirUn($_POST['utilisateur_login']);
+        if(isset($_POST['code_utilisateur']) && isset($_POST['mot_de_passe'])) {
+            $utilisateur = modele_authentification::ObtenirUn($_POST['code_utilisateur']);
             if($utilisateur) {            
                 // Vérifier si le mot de passe soumis correspond au mot de passe stocké dans la base de données                
-                if(password_verify($_POST['mot_de_passe_login'], $utilisateur->mot_de_passe)) {
+                if(password_verify($_POST['mot_de_passe'], $utilisateur->mot_de_passe)) {
                     // Stocker l'utilisateur dans la session
-                    $_SESSION['utilisateur'] = $_POST['utilisateur_login']; 
+                    $_SESSION['utilisateur'] = $_POST['code_utilisateur']; 
                     die('1');
                     header('Location: .'); // recharge la page courante
                 } else {
@@ -44,7 +44,6 @@ class ControlleurAuthentification {
             }
         } else {
             $erreur = "Impossible de se connecter. Des informations sont manquantes";
-            die('4');
             require './vues/erreur.php';
         }
     }
