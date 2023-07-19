@@ -1,6 +1,7 @@
 <?php
-  require_once './controleurs/controleur_authentification.php';
   session_start();
+  require_once './controleurs/controleur_authentification.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +38,7 @@
           </li>
           <li><a href="liste_chalets_en_promotion.php">Chalets en promotion</a></li>
           <li><a href="module_personnel.php">Module personnel</a></li>
-          <?php if(isset($_SESSION["utilisateur"])) { ?>
+          <?php if(isset($_SESSION['utilisateur'])) { ?>
             <li>
               <a>Administration &nbsp;<i class="arrow down"></i></a>
               <ul>
@@ -56,10 +57,14 @@
             <button>Connexion</button>
             <button id="close" class="annuler" aria-label="close" formnovalidate onclick="document.getElementById('dialog_login').close();">Annuler</button>
           </form>
-      </dialog>  
+      </dialog>
       
-      <button onclick="document.getElementById('dialog_login').style.display = 'block';">Connexion</button>
-      <button onclick="window.location.href='./formulaire_ajout_utilisateur.php'">Ajouter un utilisateur</button>
+      <?php if(isset($_SESSION['utilisateur'])) { ?>
+        <button onclick="window.location.href='./log_out.php'">Déconnexion</button>
+        <button onclick="window.location.href='./formulaire_ajout_utilisateur.php'">Ajouter un utilisateur</button>
+      <?php } else {?>   
+        <button onclick="document.getElementById('dialog_login').style.display = 'block';">Connexion</button>
+      <?php } ?>
 
     </nav>
     <hr>

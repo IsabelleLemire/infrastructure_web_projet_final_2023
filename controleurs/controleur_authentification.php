@@ -7,9 +7,11 @@ class ControlleurAuthentification {
     
     /* Fonction permettant d'ajouter un utilisateur */
     function ajouter() {
+        if(!isset($_SESSION['utilisateur'])) { die();} //ça arrête toute exécution
+
         if(isset($_POST['utilisateur_ajout']) && isset($_POST['mot_de_passe_ajout']) && isset($_POST['courriel_ajout'])) {
             $message = modele_authentification::ajouter($_POST['utilisateur_ajout'], $_POST['mot_de_passe_ajout'], $_POST['courriel_ajout']);
-            //echo $message;
+            echo $message;
         } else {
             $erreur = "Impossible d'ajouter un utilisateur. Des informations sont manquantes";
             require './vues/erreur.php';
@@ -18,7 +20,12 @@ class ControlleurAuthentification {
 
     function afficherFormulaireAjoutUtilisateur() {
         //$utilisateur = modele_authentification::ObtenirFormulaireAjoutUtilisateur();
-        require './vues/authentification/formulaire_ajout.php';
+        if(!isset($_SESSION['utilisateur'])) {
+            $erreur = "Tu n'es pas connecté";
+            require './vues/erreur.php';
+        } else {
+            require './vues/authentification/formulaire_ajout.php';
+        }
     }
 
     /* Fonction permettant à un utilisateur de se connecter */
@@ -30,16 +37,13 @@ class ControlleurAuthentification {
                 if(password_verify($_POST['mot_de_passe'], $utilisateur->mot_de_passe)) {
                     // Stocker l'utilisateur dans la session
                     $_SESSION['utilisateur'] = $_POST['code_utilisateur']; 
-                    die('1');
                     header('Location: .'); // recharge la page courante
                 } else {
                     $erreur = "<b class='erreur'>Le mot de passe est incorrect</b>";
-                    die('2');
                     require './vues/erreur.php';
                 }
             } else {
                 $erreur = "L'utilisateur n'existe pas";
-                die('3');
                 require './vues/erreur.php';
             }
         } else {

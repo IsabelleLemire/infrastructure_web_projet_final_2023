@@ -5,5 +5,5 @@
 
 <?php 
       $controlleurAuthentification=new ControlleurAuthentification;
-      $controlleurAuthentification->connecter();
+      $controlleurAuthentification->deconnecter();
 ?>
