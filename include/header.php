@@ -55,8 +55,8 @@
             <input type="text" placeholder="Utilisateur" name="code_utilisateur" >
             <input type="password" placeholder="Mot de passe" name="mot_de_passe" >
             <button>Connexion</button>
-            <button id="close" class="annuler" aria-label="close" formnovalidate onclick="document.getElementById('dialog_login').close();">Annuler</button>
           </form>
+          <button id="close" class="annuler" aria-label="close" formnovalidate onclick="document.getElementById('dialog_login').style.display = 'none';">Annuler</button>
       </dialog>
       
       <?php if(isset($_SESSION['utilisateur'])) { ?>

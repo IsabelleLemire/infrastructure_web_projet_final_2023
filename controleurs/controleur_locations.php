@@ -1,5 +1,4 @@
 <?php 
-
     require_once './modeles/modele_locations.php';
 
     class ControleurLocations {
@@ -58,6 +57,8 @@
 
         /* Fonction permettant de modifier un items de location */
         function editer() {
+            //if(!isset($_SESSION['utilisateur'])) { die();} //ça arrête toute exécution
+
             if(isset($_GET['id'], $_POST['nom_item']) && isset($_POST['description_item']) && isset($_POST['prix_location_par_jour']) && isset($_POST['categorie'])) {
                 $message = modele_location::editer($_GET['id'], $_POST['nom_item'], $_POST['description_item'], $_POST['prix_location_par_jour'], $_POST['categorie']);
                 echo $message;
@@ -69,6 +70,8 @@
 
         /* Fonction permettant de supprimer un items de location */
         function supprimer() {
+            //if(!isset($_SESSION['utilisateur'])) { die(2);} //ça arrête toute exécution
+
             if(isset($_GET['id'])) {
                 $message = modele_location::supprimer($_GET['id']);
                 require './vues/locations/confirmation_suppression.php';
@@ -80,6 +83,8 @@
 
         /* Fonction permettant d'ajouter un items de location */
         function ajouter() {
+            //if(!isset($_SESSION['utilisateur'])) { die(3);} //ça arrête toute exécution
+
             if(isset($_POST['nom_item']) && isset($_POST['description_item']) && isset($_POST['prix_location_par_jour']) && isset($_POST['categorie'])) {
 
                 $message = modele_location::ajouter($_POST['nom_item'], 

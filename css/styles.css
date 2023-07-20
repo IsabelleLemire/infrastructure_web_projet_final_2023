@@ -316,6 +316,7 @@ button.annuler {
     padding: 6px 24px;
     text-decoration: none;
     text-shadow: 0px 1px 0px #575853;
+    margin-top: 153px;
 }
 
 
@@ -399,4 +400,8 @@ tbody td:last-child {
 
 tbody tr:nth-child(odd) {
     background-color: rgb(209, 242, 253);
+}
+
+p.msg-erreur {
+    text-align: center;
 }
